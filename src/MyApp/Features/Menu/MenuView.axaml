@@ -1,0 +1,19 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:MyApp.Features.Menu"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="30"
+             x:Class="MyApp.Features.Menu.MenuView"
+             x:DataType="local:MenuViewModel"
+             Background="#44AAAAAA">
+
+    <Menu>
+        <MenuItem Header="{DynamicResource First}">
+            <MenuItem Header="{DynamicResource Exit}" Command="{Binding ExitCommand}" />
+        </MenuItem>
+        <MenuItem Header="{DynamicResource Second}"></MenuItem>
+        <MenuItem Header="{DynamicResource Third}"></MenuItem>
+    </Menu>
+
+</UserControl>

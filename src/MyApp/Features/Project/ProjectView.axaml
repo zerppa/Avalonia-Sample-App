@@ -1,0 +1,70 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:MyApp.Features.Project"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="MyApp.Features.Project.ProjectView"
+             x:DataType="local:ProjectViewModel"
+             Background="{DynamicResource SystemControlBackgroundAltHighBrush}">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.2*" MinWidth="120" MaxWidth="600" />
+            <ColumnDefinition Width="4" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Rectangle Grid.Column="0" Fill="#33AAAAAA" />
+        <Grid Grid.Column="0" RowDefinitions="48, *">
+            <Border Grid.Row="0" BorderThickness="0 0 0 1" BorderBrush="#33AAAAAA" Padding="5">
+                <TextBlock Classes="subtitle1" Text="{Binding ProjectTitle, Mode=OneWay}" VerticalAlignment="Center" FontWeight="500" />
+            </Border>
+            <TreeView Grid.Row="1">
+                <TreeView.Styles>
+                    <Style Selector="TreeViewItem">
+                        <Setter Property="HeaderTemplate">
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding $parent[TreeViewItem], Converter={x:Static local:ConvertTreeViewItemToEmojiIcon.Instance}}" Margin="0 0 5 0" />
+                                    <TextBlock Text="{Binding}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </Setter>
+                    </Style>
+                </TreeView.Styles>
+                <TreeViewItem Header="Expanded" IsExpanded="True">
+                    <TreeViewItem Header="Child" />
+                </TreeViewItem>
+                <TreeViewItem Header="Collapsed">
+                    <TreeViewItem Header="Child" />
+                </TreeViewItem>
+                <TreeViewItem Header="Disabled" IsEnabled="False">
+                    <TreeViewItem Header="Child" />
+                </TreeViewItem>
+            </TreeView>
+        </Grid>
+
+        <GridSplitter Grid.Column="1" Background="#44999999" ResizeDirection="Columns" />
+
+        <Rectangle Grid.Column="2" Fill="Transparent" />
+        <Grid Grid.Column="2" RowDefinitions="48, *">
+            <Border Grid.Row="0" BorderThickness="0 0 0 1" BorderBrush="#337F7F7F" Background="#33AAAAAA">
+                <TextBlock VerticalAlignment="Center">TODO: ToolBar</TextBlock>
+            </Border>
+            <Border Grid.Row="1" Background="Transparent">
+                <Grid RowDefinitions="Auto, *">
+                    <StackPanel Grid.Row="0" Margin="10">
+                        <TextBlock Classes="h3" Text="{Binding Id}" />
+                        <TextBlock>
+                            Unsaved: <Run Text="{Binding IsDirty}" />
+                        </TextBlock>
+                        <Button Command="{Binding SaveCommand}">Save</Button>
+                    </StackPanel>
+                    <TextBox Grid.Row="1" VerticalAlignment="Top" Text="{Binding Content, Mode=TwoWay}" Watermark="Write here..." AcceptsReturn="True" MaxHeight="400" Margin="10" />
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+
+</UserControl>

@@ -1,0 +1,165 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:MyApp.Features.AppSettings"
+             xmlns:ui="clr-namespace:MyApp.UI"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="MyApp.Features.AppSettings.AppSettingsView"
+             x:DataType="local:AppSettingsViewModel"
+             Background="{DynamicResource SystemControlBackgroundAltHighBrush}"
+             ScrollIntoView="{Binding ScrollIntoViewItem}"
+             Name="ViewRoot">
+
+    <UserControl.DataTemplates>
+        <DataTemplate DataType="{x:Type local:IntegerSettingViewModel}">
+            <Border>
+                <StackPanel>
+                    <TextBlock HorizontalAlignment="Left" FontWeight="DemiBold" Text="{ui:Localize {Binding Key}}" />
+                    <TextBox HorizontalAlignment="Left" Width="200" Text="{Binding Value}" />
+                </StackPanel>
+            </Border>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type local:BooleanSettingViewModel}">
+            <Border>
+                <StackPanel>
+                    <TextBlock HorizontalAlignment="Left" FontWeight="DemiBold" Text="{ui:Localize {Binding Key}}" />
+                    <ToggleSwitch HorizontalAlignment="Left" IsChecked="{Binding Value}" />
+                </StackPanel>
+            </Border>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type local:StringSettingViewModel}">
+            <Border>
+                <StackPanel>
+                    <TextBlock HorizontalAlignment="Left" FontWeight="DemiBold" Text="{ui:Localize {Binding Key}}" />
+                    <TextBox HorizontalAlignment="Left" Width="200" Text="{Binding Value}" />
+                </StackPanel>
+            </Border>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type local:UnknownSettingViewModel}">
+            <Border>
+                <TextBlock Foreground="HotPink" FontWeight="Bold">Unknown setting</TextBlock>
+            </Border>
+        </DataTemplate>
+    </UserControl.DataTemplates>
+
+    <UserControl.Resources>
+        <DataTemplate x:Key="CategoryTemplate">
+            <StackPanel>
+                <TextBlock Text="{ui:Localize {Binding Key}}" ui:BindableStyleClasses.Classes="{Binding Level, Converter={x:Static local:LevelToHeaderClassConverter.Instance}}" />
+                <ItemsControl Items="{Binding Settings}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Spacing="10" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
+                <ItemsControl Items="{Binding Categories}" ItemTemplate="{StaticResource CategoryTemplate}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Spacing="10" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
+            </StackPanel>
+        </DataTemplate>
+    </UserControl.Resources>
+
+    <UserControl.Styles>
+        <Style Selector="TextBlock.h1">
+            <Setter Property="FontSize" Value="26" />
+            <Setter Property="Margin" Value="0 0 0 8" />
+            <Setter Property="FontWeight" Value="600" />
+        </Style>
+
+        <Style Selector="TextBlock.h2">
+            <Setter Property="FontSize" Value="24" />
+            <Setter Property="Margin" Value="0 0 0 8" />
+            <Setter Property="FontWeight" Value="600" />
+        </Style>
+
+        <Style Selector="TextBlock.h3">
+            <Setter Property="FontSize" Value="22" />
+            <Setter Property="Margin" Value="0 0 0 7" />
+            <Setter Property="FontWeight" Value="500" />
+        </Style>
+
+        <Style Selector="TextBlock.h4">
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="Margin" Value="0 0 0 7" />
+            <Setter Property="FontWeight" Value="500" />
+        </Style>
+
+        <Style Selector="TextBlock.h5">
+            <Setter Property="FontSize" Value="18" />
+            <Setter Property="Margin" Value="0 0 0 6" />
+            <Setter Property="FontWeight" Value="500" />
+        </Style>
+
+        <Style Selector="TextBlock.h6">
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Margin" Value="0 0 0 6" />
+            <Setter Property="FontWeight" Value="500" />
+        </Style>
+    </UserControl.Styles>
+
+    <Grid ColumnDefinitions="1*, 40, 2*" MaxWidth="1000">
+        <Border Grid.Column="0" Background="#33AAAAAA">
+            <TreeView Items="{Binding Categories}" Focusable="False">
+                <TreeView.Resources>
+                    <SolidColorBrush x:Key="TreeViewItemBackgroundPointerOver" Color="Transparent" />
+                    <SolidColorBrush x:Key="TreeViewItemBackgroundPressed" Color="Transparent" />
+                    <SolidColorBrush x:Key="TreeViewItemBackgroundSelected" Color="Transparent" />
+                    <SolidColorBrush x:Key="TreeViewItemBackgroundSelectedPointerOver" Color="Transparent" />
+                    <SolidColorBrush x:Key="TreeViewItemBackgroundSelectedPressed" Color="Transparent" />
+                </TreeView.Resources>
+                <TreeView.Styles>
+                    <Style Selector="Button.link">
+                        <Setter Property="Foreground" Value="DodgerBlue" />
+                        <Setter Property="Padding" Value="0" />
+                        <Setter Property="Cursor" Value="Hand" />
+                        <Setter Property="BorderThickness" Value="0" />
+                        <Setter Property="Background" Value="Transparent" />
+                        <Setter Property="Template">
+                            <ControlTemplate>
+                                <ContentPresenter Content="{TemplateBinding Content}">
+                                    <ContentPresenter.Styles>
+                                        <Style Selector="TextBlock">
+                                            <Setter Property="Foreground" Value="{TemplateBinding Foreground}"/>
+                                            <Setter Property="FontSize" Value="{TemplateBinding FontSize}"/>
+                                            <Setter Property="TextDecorations" Value="Underline"/>
+                                        </Style>
+                                    </ContentPresenter.Styles>
+                                </ContentPresenter>
+                            </ControlTemplate>
+                        </Setter>
+                    </Style>
+                </TreeView.Styles>
+                <TreeView.ItemTemplate>
+                    <TreeDataTemplate ItemsSource="{Binding Categories}">
+                        <Button
+                            Classes="link"
+                            Content="{ui:Localize {Binding Key}}"
+                            Command="{Binding #ViewRoot.DataContext.NavigateCommand}"
+                            CommandParameter="{Binding}" />
+                    </TreeDataTemplate>
+                </TreeView.ItemTemplate>
+            </TreeView>
+        </Border>
+        <Border Grid.Column="2" BorderThickness="0 0 1 0" BorderBrush="#33AAAAAA">
+            <ScrollViewer>
+                <ItemsControl
+                    Name="SettingItemsRootContainer"
+                    Items="{Binding Categories}"
+                    ItemTemplate="{StaticResource CategoryTemplate}"
+                    Margin="0 0 0 10">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Spacing="10" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
+            </ScrollViewer>
+        </Border>
+    </Grid>
+</UserControl>

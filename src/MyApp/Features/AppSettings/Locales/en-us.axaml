@@ -1,0 +1,9 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <x:String x:Key="Category.General">General</x:String>
+    <x:String x:Key="Category.Test1">Test category</x:String>
+    <x:String x:Key="Category.Test1.Sub1">Sub category</x:String>
+    <x:String x:Key="Category.Test2">Another category</x:String>
+
+</ResourceDictionary>

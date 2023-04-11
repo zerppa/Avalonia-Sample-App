@@ -1,0 +1,17 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <x:String x:Key="HomeScreen.Title">Welcome</x:String>
+    <x:String x:Key="HomeScreen.Introduction">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vehicula nisl sed magna feugiat commodo. Suspendisse urna diam, dapibus quis dui sed, egestas ultrices tortor. Ut rhoncus augue non vestibulum ultrices. Sed ultricies tempus mi ut posuere. Curabitur cursus at ex nec varius. Nullam eleifend rhoncus consectetur. Curabitur fringilla dui congue, luctus dolor ut, pretium lacus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</x:String>
+    <x:String x:Key="HomeScreen.LanguageCaption">Language</x:String>
+    <x:String x:Key="HomeScreen.ThemeCaption">Theme</x:String>
+    <x:String x:Key="HomeScreen.ThemeOption.Light">Light</x:String>
+    <x:String x:Key="HomeScreen.ThemeOption.Dark">Dark</x:String>
+    <x:String x:Key="HomeScreen.AccentColorCaption">Accent color</x:String>
+
+    <x:String x:Key="HomeScreen.ControlStylePreview">Control style preview</x:String>
+    <x:String x:Key="HomeScreen.Typography">Typography</x:String>
+    <x:String x:Key="HomeScreen.Interactive">Interactive</x:String>
+    <x:String x:Key="HomeScreen.Selections">Selections</x:String>
+
+</ResourceDictionary>

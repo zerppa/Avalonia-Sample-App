@@ -1,0 +1,32 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:MyApp.Features.StatusBar"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="30"
+             x:Class="MyApp.Features.StatusBar.StatusBarView"
+             x:DataType="local:StatusBarViewModel"
+             Background="#007ACC"
+             Foreground="White"
+             Padding="5 0">
+
+    <Border MinHeight="22">
+        <Grid ColumnDefinitions="Auto, *, Auto">
+            <!-- Left size -->
+            <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Left">
+                <TextBlock VerticalAlignment="Center">
+                    Status Bar: <Run Text="{DynamicResource Yes}" />
+                </TextBlock>
+            </StackPanel>
+
+            <!-- Right size -->
+            <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
+                <TextBlock VerticalAlignment="Center">
+                    😀
+                </TextBlock>
+            </StackPanel>
+        </Grid>
+
+    </Border>
+
+</UserControl>

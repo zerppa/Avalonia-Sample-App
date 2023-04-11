@@ -1,0 +1,205 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:MyApp.Features.HomeScreen"
+             xmlns:ui="clr-namespace:MyApp.UI"
+             xmlns:editor="clr-namespace:MyApp"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="MyApp.Features.HomeScreen.HomeScreenView"
+             d:DataContext="{x:Static local:DesignData.ViewModel}"
+             x:DataType="local:HomeScreenViewModel"
+             Background="{DynamicResource SystemControlBackgroundAltHighBrush}"
+             Padding="20 10">
+
+    <UserControl.Styles>
+        <Style Selector="TextBlock.caption">
+            <Setter Property="Margin" Value="0 10 0 5" />
+            <Setter Property="FontWeight" Value="600" />
+        </Style>
+    </UserControl.Styles>
+
+    <Grid ColumnDefinitions="*, 0.05*, *">
+
+        <!-- Left side -->
+        <ScrollViewer Grid.Column="0" HorizontalScrollBarVisibility="Disabled">
+            <StackPanel>
+                <TextBlock Classes="h1" Text="{DynamicResource HomeScreen.Title}" />
+
+                <TextBlock TextWrapping="Wrap" Text="{DynamicResource HomeScreen.Introduction}" />
+
+                <TextBlock Margin="0 15 0 6">
+                    <Bold><Run Text="{DynamicResource HomeScreen.LanguageCaption}"/>:</Bold>
+                </TextBlock>
+                <ComboBox
+                    Width="200"
+                    Items="{Binding Languages}"
+                    SelectedItem="{Binding SelectedLanguage, Mode=TwoWay}"
+                    HorizontalContentAlignment="Left">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                                <TextBlock Text="{Binding LocalizedName}" />
+                                <ui:Icon IconName="{Binding Icon}" Width="16" Height="16" Margin="5 1"></ui:Icon>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+
+                <TextBlock Margin="0 15 0 6">
+                    <Bold><Run Text="{DynamicResource HomeScreen.ThemeCaption}"/>:</Bold>
+                </TextBlock>
+                <StackPanel Orientation="Horizontal" Spacing="5">
+                    <Button
+                        Width="128"
+                        Height="80"
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        Command="{Binding ChangeThemeCommand}"
+                        CommandParameter="{x:Static editor:Theme.Light}"
+                        Content="{DynamicResource HomeScreen.ThemeOption.Light}">
+                    </Button>
+                    <Button
+                        Width="128"
+                        Height="80"
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        Command="{Binding ChangeThemeCommand}"
+                        CommandParameter="{x:Static editor:Theme.Dark}"
+                        Content="{DynamicResource HomeScreen.ThemeOption.Dark}">
+                    </Button>
+                </StackPanel>
+
+                <TextBlock Margin="0 15 0 6">
+                    <Bold><Run Text="{DynamicResource HomeScreen.AccentColorCaption}"/>:</Bold>
+                </TextBlock>
+                <StackPanel Orientation="Horizontal" Spacing="5">
+                    <Button Command="{Binding ChangeAccentCommand}" CommandParameter="#FF0078D7" Width="32" Height="32"><Border Width="24" Height="24" Background="#FF0078D7"></Border></Button>
+                    <Button Command="{Binding ChangeAccentCommand}" CommandParameter="#FFFF78D7" Width="32" Height="32"><Border Width="24" Height="24" Background="#FFFF78D7"></Border></Button>
+                    <Button Command="{Binding ChangeAccentCommand}" CommandParameter="#FF2AD683" Width="32" Height="32"><Border Width="24" Height="24" Background="#FF2AD683"></Border></Button>
+                    <Button Command="{Binding ChangeAccentCommand}" CommandParameter="#FFB7A663" Width="32" Height="32"><Border Width="24" Height="24" Background="#FFB7A663"></Border></Button>
+                    <Button Command="{Binding ChangeAccentCommand}" CommandParameter="#FFAB59D1" Width="32" Height="32"><Border Width="24" Height="24" Background="#FFAB59D1"></Border></Button>
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+
+        <!-- Right side -->
+        <Grid Grid.Column="2" RowDefinitions="Auto, *">
+            <TextBlock Grid.Row="0" Classes="h4" Text="{DynamicResource HomeScreen.ControlStylePreview}" />
+
+            <TabControl Grid.Row="1">
+                <TabItem Header="{DynamicResource HomeScreen.Typography}">
+                    <ScrollViewer HorizontalScrollBarVisibility="Disabled">
+                        <StackPanel>
+                            <TextBlock Classes="h1">h1. Heading</TextBlock>
+                            <TextBlock Classes="h2">h2. Heading</TextBlock>
+                            <TextBlock Classes="h3">h3. Heading</TextBlock>
+                            <TextBlock Classes="h4">h4. Heading</TextBlock>
+                            <TextBlock Classes="h5">h5. Heading</TextBlock>
+                            <TextBlock Classes="h6">h6. Heading</TextBlock>
+                            <TextBlock Classes="subtitle1">Subtitle1. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur</TextBlock>
+                            <TextBlock Classes="p">p. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur unde suscipit, quam beatae rerum inventore consectetur, neque doloribus, cupiditate numquam dignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam.</TextBlock>
+                        </StackPanel>
+                    </ScrollViewer>
+                </TabItem>
+
+                <TabItem Header="{DynamicResource HomeScreen.Interactive}">
+                    <ScrollViewer HorizontalScrollBarVisibility="Disabled">
+                        <StackPanel Spacing="5">
+                            <TextBlock Classes="caption">Standard button:</TextBlock>
+                            <StackPanel Orientation="Horizontal" Spacing="5">
+                                <Button>Button</Button>
+                                <Button IsDefault="True" Classes="accent">Accent</Button>
+                                <Button IsEnabled="False">Disabled</Button>
+                            </StackPanel>
+
+                            <TextBlock Classes="caption">Toggle button:</TextBlock>
+                            <StackPanel Orientation="Horizontal" Spacing="5">
+                                <ToggleButton>ToggleButton</ToggleButton>
+                                <ToggleButton IsChecked="True">Checked</ToggleButton>
+                                <ToggleButton IsChecked="true" IsEnabled="False">Disabled</ToggleButton>
+                            </StackPanel>
+
+                            <TextBlock Classes="caption">Toggle switch:</TextBlock>
+                            <StackPanel Orientation="Horizontal" Spacing="5">
+                                <ToggleSwitch>Unchecked</ToggleSwitch>
+                                <ToggleSwitch IsChecked="True">Checked</ToggleSwitch>
+                                <ToggleSwitch IsChecked="true" IsEnabled="False">Disabled</ToggleSwitch>
+                            </StackPanel>
+
+                            <TextBlock Classes="caption">CheckBox:</TextBlock>
+                            <StackPanel Orientation="Horizontal" Spacing="5">
+                                <CheckBox>CheckBox</CheckBox>
+                                <CheckBox IsChecked="True">Checked</CheckBox>
+                                <CheckBox IsChecked="{x:Null}" IsThreeState="True">3-State</CheckBox>
+                                <CheckBox IsChecked="true" IsEnabled="False">Disabled</CheckBox>
+                            </StackPanel>
+
+                            <TextBlock Classes="caption">RadioButton:</TextBlock>
+                            <StackPanel Orientation="Horizontal" Spacing="5">
+                                <RadioButton>RadioButton</RadioButton>
+                                <RadioButton IsChecked="True">Checked</RadioButton>
+                                <RadioButton IsEnabled="False">Disabled</RadioButton>
+                            </StackPanel>
+
+                            <TextBlock Classes="caption">Slider:</TextBlock>
+                            <StackPanel Spacing="1" MaxWidth="300" HorizontalAlignment="Left">
+                                <Slider Value="0" MinWidth="120" />
+                                <Slider Value="1" TickPlacement="Outside" />
+                                <Slider Value="2" IsDirectionReversed="True" TickPlacement="BottomRight" />
+                                <Slider Value="5" IsEnabled="False" />
+                            </StackPanel>
+
+                            <TextBlock Classes="caption">TextBox:</TextBlock>
+                            <StackPanel Orientation="Horizontal" Spacing="5">
+                                <TextBox Text="Enabled" Width="140" />
+                                <TextBox Watermark="Placeholder" Width="140" />
+                                <TextBox Text="Disabled" IsEnabled="False" Width="140" />
+                            </StackPanel>
+
+                            <TextBlock Classes="caption">Password:</TextBlock>
+                            <StackPanel Orientation="Horizontal" Spacing="5">
+                                <TextBox PasswordChar="*" Text="Enabled" Width="140" />
+                                <TextBox PasswordChar="*" Watermark="Placeholder" Width="140" />
+                                <TextBox PasswordChar="*" Text="Disabled" IsEnabled="False" Width="140" />
+                            </StackPanel>
+                        </StackPanel>
+                    </ScrollViewer>
+                </TabItem>
+
+                <TabItem Header="{DynamicResource HomeScreen.Selections}">
+                    <ScrollViewer HorizontalScrollBarVisibility="Disabled">
+                        <StackPanel Spacing="5">
+                            <TextBlock Classes="caption">ComboBox:</TextBlock>
+                            <ComboBox BorderThickness="1" Width="200" HorizontalAlignment="Left" SelectedIndex="0">
+                                <ComboBoxItem Content="One" />
+                                <ComboBoxItem Content="Two" />
+                                <ComboBoxItem Content="Disabled" IsEnabled="False" />
+                            </ComboBox>
+
+                            <TextBlock Classes="caption">ListBox:</TextBlock>
+                            <ListBox BorderThickness="1" Width="250" HorizontalAlignment="Left">
+                                <ListBoxItem Content="Unselected" />
+                                <ListBoxItem Content="Selected" IsSelected="True" />
+                                <ListBoxItem Content="Disabled" IsEnabled="False" />
+                            </ListBox>
+
+                            <TextBlock Classes="caption">TreeView:</TextBlock>
+                            <TreeView BorderThickness="1" Width="250" HorizontalAlignment="Left">
+                                <TreeViewItem Header="Expanded" IsExpanded="True">
+                                    <TreeViewItem Header="Child" />
+                                </TreeViewItem>
+                                <TreeViewItem Header="Collapsed">
+                                    <TreeViewItem Header="Child" />
+                                </TreeViewItem>
+                                <TreeViewItem Header="Disabled" IsEnabled="False">
+                                    <TreeViewItem Header="Child" />
+                                </TreeViewItem>
+                            </TreeView>
+                        </StackPanel>
+                    </ScrollViewer>
+                </TabItem>
+            </TabControl>
+        </Grid>
+    </Grid>
+</UserControl>

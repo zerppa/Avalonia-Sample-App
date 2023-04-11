@@ -1,0 +1,9 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <x:String x:Key="First">One</x:String>
+    <x:String x:Key="Second">Two</x:String>
+    <x:String x:Key="Third">Three</x:String>
+    <x:String x:Key="Exit">Exit</x:String>
+
+</ResourceDictionary>

@@ -1,0 +1,66 @@
+# EditorConfig is awesome:http://EditorConfig.org
+
+# top-most EditorConfig file
+root = true
+
+# All Files
+[*]
+charset = utf-8
+end_of_line = crlf
+indent_style = space
+indent_size = 4
+trim_trailing_whitespace = true
+
+# Solution Files
+[*.sln]
+indent_style = tab
+
+# XML Project Files
+[*.{csproj,vbproj,vcxproj,vcxproj.filters,proj,projitems,shproj}]
+indent_size = 2
+
+# Configuration Files
+[*.{json,xml,yml,config,props,targets,nuspec,resx,ruleset}]
+indent_size = 2
+
+# Markdown Files
+[*.md]
+trim_trailing_whitespace = false
+
+[*.cs]
+
+# IDE0008: Use explicit type
+csharp_style_var_elsewhere = false
+
+# SA0001: XML comment analysis disabled
+dotnet_diagnostic.SA0001.severity = none
+
+# SA1633: File should have header
+dotnet_diagnostic.SA1633.severity = none
+
+# SA1634: File header should show copyright
+dotnet_diagnostic.SA1634.severity = none
+
+# SA1635: File header should have copyright text
+dotnet_diagnostic.SA1635.severity = none
+
+# SA1636: File header copyright text should match
+dotnet_diagnostic.SA1636.severity = none
+
+# SA1637: File header should contain file name
+dotnet_diagnostic.SA1637.severity = none
+
+# SA1638: File header file name documentation should match file name
+dotnet_diagnostic.SA1638.severity = none
+
+# SA1639: File header should have summary
+dotnet_diagnostic.SA1639.severity = none
+
+# SA1640: File header should have valid company text
+dotnet_diagnostic.SA1640.severity = none
+
+# SA1641: File header company name text should match
+dotnet_diagnostic.SA1641.severity = none
+
+# SA1407: Arithmetic expressions should declare precedence
+dotnet_diagnostic.SA1407.severity = none

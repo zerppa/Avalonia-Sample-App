@@ -1,0 +1,11 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <x:String x:Key="ViewSelector.Home">Aloitus</x:String>
+    <x:String x:Key="ViewSelector.NewProject">Uusi projeckti</x:String>
+    <x:String x:Key="ViewSelector.OpenProject">Avaa projekti</x:String>
+    <x:String x:Key="ViewSelector.Settings">Asetukset</x:String>
+    <x:String x:Key="ViewSelector.Exit">Sulje</x:String>
+    <x:String x:Key="ViewSelector.ExitPrompt">Alla listatuissa projekteissa ({0}) on tallentamattomia muutoksia. Haluatko tallentaa ne ennen sulkemista?</x:String>
+
+</ResourceDictionary>

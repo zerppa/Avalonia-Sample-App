@@ -1,0 +1,24 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:editor="clr-namespace:MyApp"
+        xmlns:ui="clr-namespace:MyApp.UI"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="MyApp.MainWindow"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="Avalonia Sample App">
+
+    <Window.Styles>
+        <StyleInclude Source="/Styles/DefaultStyles.axaml" />
+		<StyleInclude Source="/Styles/Icon.axaml" />
+        <StyleInclude Source="/Styles/PublishedView.axaml" />
+    </Window.Styles>
+
+    <Design.DataContext>
+        <editor:MainWindowViewModel />
+    </Design.DataContext>
+
+    <ui:PublishedView ViewName="IDE.Shell" />
+
+</Window>

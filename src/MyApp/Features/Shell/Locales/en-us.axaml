@@ -1,0 +1,10 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <x:String x:Key="Yes">Yes</x:String>
+    <x:String x:Key="No">No</x:String>
+    <x:String x:Key="Cancel">Cancel</x:String>
+    <x:String x:Key="Open">Open</x:String>
+    <x:String x:Key="Save">Save</x:String>
+
+</ResourceDictionary>

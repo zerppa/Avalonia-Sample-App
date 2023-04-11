@@ -1,0 +1,20 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:MyApp.Features.Shell"
+             xmlns:ui="clr-namespace:MyApp.UI"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="MyApp.Features.Shell.ShellView"
+             x:DataType="local:ShellViewModel">
+
+    <DockPanel LastChildFill="True">
+        <ui:PublishedView DockPanel.Dock="Top" ViewName="IDE.MainMenu">Main menu</ui:PublishedView>
+        <ui:PublishedView DockPanel.Dock="Bottom" ViewName="IDE.StatusBar">Status bar</ui:PublishedView>
+        <ui:PublishedView DockPanel.Dock="Left" ViewName="IDE.ViewSelector">View selector</ui:PublishedView>
+
+        <Panel Name="ViewPanel" />
+
+    </DockPanel>
+
+</UserControl>

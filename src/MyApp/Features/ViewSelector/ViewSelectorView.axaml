@@ -1,0 +1,168 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:MyApp.Features.ViewSelector"
+             xmlns:ui="clr-namespace:MyApp.UI"
+             mc:Ignorable="d" d:DesignWidth="64" d:DesignHeight="450"
+             x:Class="MyApp.Features.ViewSelector.ViewSelectorView"
+             d:DataContext="{x:Static local:DesignData.ViewModel}"
+             x:DataType="local:ViewSelectorViewModel"
+             Background="#667F7F7F"
+             Loaded="OnLoaded"
+             Unloaded="OnUnloaded">
+
+    <UserControl.Styles>
+        <Style Selector="Button.selectorButton">
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="Width" Value="48" />
+            <Setter Property="Height" Value="48" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="Background" Value="{DynamicResource ViewSelector.SelectorButton.Background}" />
+            <Setter Property="TextElement.Foreground" Value="LimeGreen" />
+            <Setter Property="CornerRadius" Value="24" />
+            <Setter Property="ToolTip.Placement" Value="Right" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border
+                            Background="{TemplateBinding Background}"
+                            CornerRadius="{TemplateBinding CornerRadius}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            BorderBrush="{TemplateBinding BorderBrush}">
+                            <Border.Transitions>
+                                <Transitions>
+                                    <CornerRadiusTransition Property="CornerRadius" Duration="0:0:0.2"/>
+                                    <BrushTransition Property="Background" Duration="0:0:0.1"/>
+                                </Transitions>
+                            </Border.Transitions>
+                            <ContentPresenter
+                                x:Name="contentPresenter"
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                Content="{TemplateBinding Content}"
+                                RecognizesAccessKey="True"
+                                RenderTransformOrigin="0.5,0.5"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style Selector="Button.selectorButton:pointerover">
+            <Setter Property="Background" Value="{DynamicResource SystemControlForegroundAccentBrush}" />
+            <Setter Property="CornerRadius" Value="12" />
+            <Setter Property="TextElement.Foreground" Value="White" />
+        </Style>
+        <Style Selector="Button.selectorButton:pressed">
+            <Setter Property="RenderTransform">
+                <TranslateTransform Y="1"/>
+            </Setter>
+        </Style>
+    </UserControl.Styles>
+
+    <Panel>
+        <Border IsHitTestVisible="False" Background="{DynamicResource SystemAccentColor}" Opacity="0.1" />
+
+        <Grid RowDefinitions="Auto, *, Auto, Auto" Width="64" Margin="0 8">
+            <!-- The top button group -->
+            <StackPanel Grid.Row="0" DockPanel.Dock="Top">
+                <!-- The special Home button -->
+                <Panel>
+                    <Border
+                        HorizontalAlignment="Left"
+                        Width="4"
+                        Margin="0 4"
+                        Background="{DynamicResource SystemControlForegroundAccentBrush}"
+                        IsVisible="{Binding IsHomeSelected, Mode=OneWay}" IsHitTestVisible="False" />
+
+                    <Button Command="{Binding ActivateHomeCommand, Mode=OneWay}" Classes="selectorButton" ToolTip.Tip="{DynamicResource ViewSelector.Home}">
+                        <ui:Icon IconName="Home" Color="{Binding $parent[Button].Foreground}" Width="24" Height="24" />
+                    </Button>
+                </Panel>
+
+                <Separator Margin="16 5" />
+            </StackPanel>
+
+            <Border Name="CombinedContainer" Grid.Row="1" Grid.RowSpan="2" />
+
+            <!-- The dynamic project list -->
+            <ScrollViewer Name="ScrollContainer" Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                <ItemsControl Name="ItemsContainer" Items="{Binding Projects}" VerticalAlignment="Top">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Spacing="5" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <!-- The project activator button -->
+                            <Panel>
+                                <Border
+                                    HorizontalAlignment="Left"
+                                    Width="4"
+                                    Margin="0 4"
+                                    Background="{DynamicResource SystemControlForegroundAccentBrush}"
+                                    IsVisible="{Binding IsSelected, Mode=OneWay}" IsHitTestVisible="False" />
+
+                                <Button
+                                    Command="{Binding ActivateCommand}"
+                                    Classes="selectorButton"
+                                    Background="#227F7F7F"
+                                    ToolTip.Tip="{Binding Title}">
+                                    <Button.ContextMenu>
+                                        <ContextMenu>
+                                            <MenuItem Header="Remove" Command="{Binding RemoveCommand}" />
+                                        </ContextMenu>
+                                    </Button.ContextMenu>
+                                    <ui:Icon IconName="Project" Color="#FF7F7F7F" Width="24" Height="24" />
+                                </Button>
+
+                                <Border
+                                    CornerRadius="5"
+                                    Background="Coral"
+                                    BoxShadow="1 1 4 1 #44000000"
+                                    Width="10"
+                                    Height="10"
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Bottom"
+                                    Margin="8"
+                                    IsVisible="{Binding IsDirty}"
+                                    IsHitTestVisible="False" />
+                            </Panel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+
+            <!-- The moving button group -->
+            <StackPanel Name="ListActionsContainer" Grid.Row="2" VerticalAlignment="Top" MinHeight="111">
+                <!-- The special Add Project button -->
+                <Button Command="{Binding AddProjectCommand, Mode=OneWay}" Classes="selectorButton" Margin="0 5 0 0" ToolTip.Tip="{DynamicResource ViewSelector.NewProject}">
+                    <ui:Icon IconName="Add" Color="{Binding $parent[Button].Foreground}" Width="24" Height="24" />
+                </Button>
+
+                <!-- The special Open Project button -->
+                <Button Command="{Binding OpenProjectCommand, Mode=OneWay}" Classes="selectorButton" Margin="0 5 0 0" ToolTip.Tip="{DynamicResource ViewSelector.OpenProject}">
+                    <ui:Icon IconName="Open" Color="{Binding $parent[Button].Foreground}" Width="24" Height="24" />
+                </Button>
+            </StackPanel>
+
+            <!-- The bottom button group -->
+            <StackPanel Grid.Row="3" DockPanel.Dock="Bottom">
+                <!-- The special Settings button -->
+                <Panel>
+                    <Border
+                        HorizontalAlignment="Left"
+                        Width="4"
+                        Margin="0 4"
+                        Background="{DynamicResource SystemControlForegroundAccentBrush}"
+                        IsVisible="{Binding IsSettingsSelected, Mode=OneWay}" IsHitTestVisible="False" />
+
+                    <Button Command="{Binding ActivateSettingsCommand, Mode=OneWay}" Classes="selectorButton" ToolTip.Tip="{DynamicResource ViewSelector.Settings}">
+                        <ui:Icon IconName="Settings" Color="{Binding $parent[Button].Foreground}" Width="24" Height="24" />
+                    </Button>
+                </Panel>
+            </StackPanel>
+        </Grid>
+    </Panel>
+</UserControl>

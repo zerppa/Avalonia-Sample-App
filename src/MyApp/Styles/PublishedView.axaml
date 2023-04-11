@@ -1,0 +1,49 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ui="clr-namespace:MyApp.UI">
+    <Design.PreviewWith>
+        <ui:PublishedView ViewName="Sample.MyView" ViewParameter="parameter" />
+    </Design.PreviewWith>
+
+    <Style Selector="ui|PublishedView">
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Panel>
+                    <Border
+                        Name="DesignTimeView"
+                        BorderBrush="DodgerBlue"
+                        BorderThickness="1"
+                        Background="LightBlue"
+                        IsVisible="{Binding ., Converter={x:Static ui:ConvertDesignModeToBoolean.Instance}}">
+                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                                <TextBlock Text="{TemplateBinding ViewName, Mode=OneWay}" />
+                                <TextBlock
+                                    Text="(ViewName)"
+                                    Foreground="Red"
+                                    IsVisible="{TemplateBinding ViewName, Converter={x:Static StringConverters.IsNullOrEmpty}}" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{TemplateBinding ViewParameter, Mode=OneWay}" />
+                                <TextBlock
+                                    Text="(null)"
+                                    IsVisible="{TemplateBinding ViewParameter, Converter={x:Static ObjectConverters.IsNull}}" />
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                    <ContentPresenter
+                        Name="PART_ContentPresenter"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="{TemplateBinding CornerRadius}"
+                        ContentTemplate="{TemplateBinding ContentTemplate}"
+                        Content="{TemplateBinding Content}"
+                        Padding="{TemplateBinding Padding}"
+                        VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                        HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" />
+                </Panel>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</Styles>

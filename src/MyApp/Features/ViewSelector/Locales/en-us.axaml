@@ -1,0 +1,11 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <x:String x:Key="ViewSelector.Home">Home</x:String>
+    <x:String x:Key="ViewSelector.NewProject">New project</x:String>
+    <x:String x:Key="ViewSelector.OpenProject">Open project</x:String>
+    <x:String x:Key="ViewSelector.Settings">Settings</x:String>
+    <x:String x:Key="ViewSelector.Exit">Exit</x:String>
+    <x:String x:Key="ViewSelector.ExitPrompt">The following projects ({0}) have unsaved changes. Do you want to save them before exiting?</x:String>
+
+</ResourceDictionary>

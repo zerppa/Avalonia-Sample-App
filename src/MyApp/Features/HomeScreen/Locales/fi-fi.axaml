@@ -1,0 +1,17 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <x:String x:Key="HomeScreen.Title">Aloitus</x:String>
+    <x:String x:Key="HomeScreen.Introduction">Lyökämme käsi kätehen, sormet sormien lomahan, lauloaksemme hyviä, parahia pannaksemme, kuulla noien kultaisien, tietä mielitehtoisien, nuorisossa nousevassa, kansassa kasuavassa: noita saamia sanoja, virsiä virittämiä vyöltä vanhan Väinämöisen, alta ahjon Ilmarisen, päästä kalvan Kaukomielen, Joukahaisen jousen tiestä, Pohjan peltojen periltä, Kalevalan kankahilta.</x:String>
+    <x:String x:Key="HomeScreen.LanguageCaption">Kieli</x:String>
+    <x:String x:Key="HomeScreen.ThemeCaption">Teema</x:String>
+    <x:String x:Key="HomeScreen.ThemeOption.Light">Vaalea</x:String>
+    <x:String x:Key="HomeScreen.ThemeOption.Dark">Tumma</x:String>
+    <x:String x:Key="HomeScreen.AccentColorCaption">Teemaväri</x:String>
+
+    <x:String x:Key="HomeScreen.ControlStylePreview">Tyylien esikatselu</x:String>
+    <x:String x:Key="HomeScreen.Typography">Kirjasinlaatu</x:String>
+    <x:String x:Key="HomeScreen.Interactive">Peruskontrollit</x:String>
+    <x:String x:Key="HomeScreen.Selections">Listat</x:String>
+
+</ResourceDictionary>
