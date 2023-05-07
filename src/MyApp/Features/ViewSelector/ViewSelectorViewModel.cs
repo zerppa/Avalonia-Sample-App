@@ -121,7 +121,7 @@ public sealed partial class ViewSelectorViewModel : ViewModel
                 AllowMultiple = false,
             });
 
-            var folder = folders?[0];
+            var folder = folders?.FirstOrDefault();
             if (folder is not null)
             {
                 this.lastSelectedDirectory = folder;
