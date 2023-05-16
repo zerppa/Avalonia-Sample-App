@@ -47,14 +47,14 @@
         <DataTemplate x:Key="CategoryTemplate">
             <StackPanel>
                 <TextBlock Text="{ui:Localize {Binding Key}}" ui:BindableStyleClasses.Classes="{Binding Level, Converter={x:Static local:LevelToHeaderClassConverter.Instance}}" />
-                <ItemsControl Items="{Binding Settings}">
+                <ItemsControl ItemsSource="{Binding Settings}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <StackPanel Spacing="10" />
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
                 </ItemsControl>
-                <ItemsControl Items="{Binding Categories}" ItemTemplate="{StaticResource CategoryTemplate}">
+                <ItemsControl ItemsSource="{Binding Categories}" ItemTemplate="{StaticResource CategoryTemplate}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <StackPanel Spacing="10" />
@@ -105,7 +105,7 @@
 
     <Grid ColumnDefinitions="1*, 40, 2*" MaxWidth="1000">
         <Border Grid.Column="0" Background="#33AAAAAA">
-            <TreeView Items="{Binding Categories}" Focusable="False">
+            <TreeView ItemsSource="{Binding Categories}" Focusable="False">
                 <TreeView.Resources>
                     <SolidColorBrush x:Key="TreeViewItemBackgroundPointerOver" Color="Transparent" />
                     <SolidColorBrush x:Key="TreeViewItemBackgroundPressed" Color="Transparent" />
@@ -150,7 +150,7 @@
             <ScrollViewer>
                 <ItemsControl
                     Name="SettingItemsRootContainer"
-                    Items="{Binding Categories}"
+                    ItemsSource="{Binding Categories}"
                     ItemTemplate="{StaticResource CategoryTemplate}"
                     Margin="0 0 0 10">
                     <ItemsControl.ItemsPanel>

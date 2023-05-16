@@ -33,7 +33,7 @@
                 </TextBlock>
                 <ComboBox
                     Width="200"
-                    Items="{Binding Languages}"
+                    ItemsSource="{Binding Languages}"
                     SelectedItem="{Binding SelectedLanguage, Mode=TwoWay}"
                     HorizontalContentAlignment="Left">
                     <ComboBox.ItemTemplate>

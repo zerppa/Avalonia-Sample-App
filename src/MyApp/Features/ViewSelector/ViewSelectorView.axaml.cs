@@ -6,11 +6,9 @@ using System.Linq;
 
 using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Controls.Primitives;
 using Avalonia.Interactivity;
 using Avalonia.Reactive;
 using Avalonia.Threading;
-using Avalonia.VisualTree;
 
 /// <summary>
 /// The View Selector view.
@@ -25,7 +23,7 @@ public partial class ViewSelectorView : UserControl
     {
         this.InitializeComponent();
 
-        ItemsControl.ItemsProperty.Changed.Subscribe(
+        ItemsControl.ItemsSourceProperty.Changed.Subscribe(
             new AnonymousObserver<AvaloniaPropertyChangedEventArgs<IEnumerable?>>(this.OnItemsChanged));
 
         var viewSelector = App.Current?.Host.GetInstance<IViewSelector>();

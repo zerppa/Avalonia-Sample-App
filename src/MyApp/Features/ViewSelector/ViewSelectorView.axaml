@@ -87,7 +87,7 @@
 
             <!-- The dynamic project list -->
             <ScrollViewer Name="ScrollContainer" Grid.Row="1" VerticalScrollBarVisibility="Auto">
-                <ItemsControl Name="ItemsContainer" Items="{Binding Projects}" VerticalAlignment="Top">
+                <ItemsControl Name="ItemsContainer" ItemsSource="{Binding Projects}" VerticalAlignment="Top">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <StackPanel Spacing="5" />

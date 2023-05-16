@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 
 using Avalonia.Platform.Storage;
 using Avalonia.Threading;
-using AvaloniaEdit.Utils;
 
 using CommunityToolkit.Mvvm.Input;
 

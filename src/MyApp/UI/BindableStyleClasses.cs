@@ -1,7 +1,6 @@
 namespace MyApp.UI;
 
 using Avalonia;
-using Avalonia.Controls;
 using Avalonia.Data;
 
 /// <summary>
@@ -9,6 +8,9 @@ using Avalonia.Data;
 /// </summary>
 public class BindableStyleClasses
 {
+    /// <summary>
+    /// Defines the <see cref="Classes"/> property.
+    /// </summary>
     public static readonly AttachedProperty<string> ClassesProperty =
         AvaloniaProperty.RegisterAttached<BindableStyleClasses, StyledElement, string>(
             "Classes",
@@ -53,7 +55,8 @@ public class BindableStyleClasses
     {
         if (element is not null)
         {
-            element.Classes = Classes.Parse(e.NewValue as string ?? string.Empty);
+            element.Classes.Clear();
+            element.Classes.AddRange((e.NewValue as string ?? string.Empty).Split(' ', System.StringSplitOptions.RemoveEmptyEntries | System.StringSplitOptions.TrimEntries));
         }
     }
 }
