@@ -40,7 +40,7 @@ This solution uses the [MVVM Community Toolkit](https://learn.microsoft.com/en-u
 
 The solution uses:
 - .NET 7
-- Avalonia 11.0.0 preview 5
+- Avalonia 11.0.0 preview 8
 
 No special setup is needed. Open in **Visual Studio** and just **Build** & **Run** (assuming you have the .NET 7.0 SDK installed).
 
